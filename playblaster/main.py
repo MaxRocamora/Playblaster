@@ -27,7 +27,7 @@ class Playblaster(QMainWindow):
         super().__init__(parent)
         self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
         self.setObjectName(__qt__)
-        self.ui_window = build_main_window(parent)
+        self.ui_window = build_main_window()
         self.setFixedSize(self.ui_window.maximumWidth(), self.ui_window.maximumHeight())
         self.setCentralWidget(self.ui_window.centralWidget())
         self.move(parent.geometry().center() - self.ui_window.geometry().center())
