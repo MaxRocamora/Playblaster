@@ -24,26 +24,25 @@ def build_main_window(parent=None):
     log_layout.setObjectName("log_layout")
     log_layout.setContentsMargins(0, 0, 0, 0)
 
-    # FPS Label
-    lbl_fps = QtWidgets.QLabel(log_layout_widget)
-    lbl_fps.setFont(font)
-    lbl_fps.setObjectName("lbl_fps")
-    lbl_fps.setText("FPS: 24")
-
     # --- Options GroupBox (top) ---
     group_box = QtWidgets.QGroupBox("Options", central_widget)
     group_box.setGeometry(QtCore.QRect(10, 10, 401, 201))
     group_box.setFont(font)
-    group_box.setObjectName("groupBox_2")
+    group_box.setObjectName("groupBox_options")
 
-    # Browse Button (QToolButton)
-    btn_browse = QtWidgets.QToolButton(group_box)
+    # FPS Label
+    lbl_fps = QtWidgets.QLabel(group_box)
+    lbl_fps.setGeometry(QtCore.QRect(10, 168, 121, 20))
+    lbl_fps.setFont(font)
+    lbl_fps.setObjectName("lbl_fps")
+    lbl_fps.setText("FPS: 24")
+
+    # Browse Button (QPushButton)
+    btn_browse = QtWidgets.QPushButton(group_box)
     btn_browse.setGeometry(QtCore.QRect(311, 160, 81, 32))
     btn_browse.setFont(font)
     btn_browse.setObjectName("btn_browse")
     btn_browse.setText("Folder")
-    btn_browse.setIconSize(QtCore.QSize(32, 32))
-    btn_browse.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
 
     # Publish Button (QPushButton)
     btn_publish = QtWidgets.QPushButton(group_box)
