@@ -46,21 +46,18 @@ def playblast(
     path = export_path(filename)
     pb_filepath = os.path.join(path, filename)
 
+    # store interface bg original colors
+    bg_color = cmds.displayRGBColor("background", query=True)
+    top_color = cmds.displayRGBColor("backgroundTop", query=True)
+    bot_color = cmds.displayRGBColor("backgroundBottom", query=True)
+
     # vfx green vg
     if vp_green:
-        # store interface bg original colors
-        bg_color = cmds.displayRGBColor("background", query=True)
-        top_color = cmds.displayRGBColor("backgroundTop", query=True)
-        bot_color = cmds.displayRGBColor("backgroundBottom", query=True)
         set_green_bg()
-
-    mel.eval("setAllMainWindowComponentsVisible 0;")
 
     # hud
     if vp_hud:
         _configure_hud(filename)
-    else:
-        cmds.headsUpDisplay(layoutVisibility=False)
 
     # maya command for playblast
     try:
@@ -83,8 +80,7 @@ def playblast(
     except RuntimeError as e:
         log.error(str(e))
     finally:
-        if vp_green:
-            restore_colors(top_color, bg_color, bot_color)
+        restore_colors(top_color, bg_color, bot_color)
 
     # cleanup
     cmds.setAttr("hardwareRenderingGlobals.multiSampleEnable", aa_stored)
@@ -94,7 +90,6 @@ def playblast(
         cmds.setAttr("hardwareRenderingGlobals.motionBlurShutter", 0)
     if vp_hud and cmds.headsUpDisplay("HUDPreviewInfo", exists=True):
         cmds.headsUpDisplay("HUDPreviewInfo", rem=True)
-    mel.eval("setAllMainWindowComponentsVisible 1;")
 
     # export audio separately if it exists
     audio_filepath = export_audio()
