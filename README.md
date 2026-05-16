@@ -1,2 +1,3 @@
-# Playblaster
-Maya Playblast Tool
+Playblaster Tool
+================
+
